@@ -8,23 +8,11 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import roc_auc_score,accuracy_score,precision_score,recall_score,f1_score
 import streamlit as st
 import pickle
-import requests
+
 
 
 import streamlit as st
 import pandas as pd
-
-def load_model():
-    url = 'https://raw.githubusercontent.com/naren579/MLOPS/main/Titanic/model_titanic.pkl'
-    response = requests.get(url)
-
-    # Check if the request was successful (status code 200)
-    if response.status_code == 200:
-        loaded_model = pickle.loads(response.content)
-        return loaded_model
-    else:
-        st.error(f"Failed to load model. Status code: {response.status_code}")
-        return None
 
 st.set_page_config(layout="wide")
 # Streamlit app
@@ -40,9 +28,9 @@ if uploaded_file is not None:
     try:
         df = pd.read_csv(uploaded_file)
         X,y=df.drop('Survived',axis=1),df['Survived']
-        # with open('model_titanic.pkl', 'rb') as f:
-        #     clf = pickle.load(f)
-        clf=load_model()
+        with open('model_titanic.pkl', 'rb') as f:
+            clf = pickle.load(f)
+        
         if button_pressed:
             pred_proba=clf.predict_proba(X)[:,1]
             y_pred=pd.DataFrame(clf.predict(X))
