@@ -10,6 +10,7 @@ import streamlit as st
 import pickle
 
 
+
 import streamlit as st
 import pandas as pd
 
@@ -27,7 +28,7 @@ if uploaded_file is not None:
     try:
         df = pd.read_csv(uploaded_file)
         X,y=df.drop('Survived',axis=1),df['Survived']
-        with open('https://github.com/naren579/MLOPS/blob/main/Titanic/model_titanic.pkl', 'rb') as f:
+        with open('model_titanic.pkl', 'rb') as f:
             clf = pickle.load(f)
         if button_pressed:
             pred_proba=clf.predict_proba(X)[:,1]
