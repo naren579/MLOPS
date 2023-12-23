@@ -8,7 +8,7 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import roc_auc_score,accuracy_score,precision_score,recall_score,f1_score
 import streamlit as st
 import pickle
-
+import requests
 
 
 import streamlit as st
