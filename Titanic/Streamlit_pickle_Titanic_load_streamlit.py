@@ -12,22 +12,22 @@ import streamlit as st
 import requests
 import pickle
 
-# URL of the raw pickle file on GitHub
-url = 'https://raw.githubusercontent.com/naren579/MLOPS/main/Titanic/model_titanic.pkl'
+# # URL of the raw pickle file on GitHub
+# url = 'https://raw.githubusercontent.com/naren579/MLOPS/main/Titanic/model_titanic.pkl'
 
-# Function to load the model
-def load_model():
-    response = requests.get(url)
+# # Function to load the model
+# def load_model():
+#     response = requests.get(url)
 
-    # Check if the request was successful (status code 200)
-    if response.status_code == 200:
-        loaded_model = pickle.loads(response.content)
-        return loaded_model
-    else:
-        st.error(f"Failed to load model. Status code: {response.status_code}")
-        return None
+#     # Check if the request was successful (status code 200)
+#     if response.status_code == 200:
+#         loaded_model = pickle.loads(response.content)
+#         return loaded_model
+#     else:
+#         st.error(f"Failed to load model. Status code: {response.status_code}")
+#         return None
 
-# Load the model
+# # Load the model
 
 
 
@@ -45,9 +45,9 @@ if uploaded_file is not None:
     try:
         df = pd.read_csv(uploaded_file)
         X,y=df.drop('Survived',axis=1),df['Survived']
-        # with open('model_titanic.pkl', 'rb') as f:
-        #     clf = pickle.load(f)
-        clf = load_model()
+        with open('model_titanic.pkl', 'rb') as f:
+            clf = pickle.load(f)
+        # clf = load_model()
         
         if button_pressed:
             pred_proba=clf.predict_proba(X)[:,1]
