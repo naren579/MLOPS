@@ -32,7 +32,7 @@ color_scale = st.selectbox('Select Color Palette:', px.colors.named_colorscales(
 
 #Selecting k random centroids
 k= st.selectbox("Select number of clusters",[1,3,5,7,9])
-button_clicked = st.button('GO')
+button_clicked = st.button('NEXT')
 def get_centroids(data,k):
     lst=[]
     for i in range(1,k+1):
