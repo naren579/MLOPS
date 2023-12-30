@@ -32,8 +32,8 @@ color_scale = st.selectbox('Select Color Palette:', px.colors.named_colorscales(
 
 #Selecting k random centroids
 k= st.selectbox("Select number of clusters",[1,3,5,7,9])
-reset_flag = st.button('RESET')
 button_clicked = st.button('NEXT')
+reset_flag = st.button('RESET')
 def get_centroids(data,k):
     lst=[]
     for i in range(1,k+1):
@@ -182,12 +182,15 @@ if button_clicked:
 if reset_flag:
     # Set the reset flag in the session state
     session['reset_flag'] = True
+    session['centroids'] = None
+    session['labels'] = None
     
-if session['reset_flag']:
-    # If reset flag is set, allow user to select a new number of clusters
-    k = st.selectbox("Select number of clusters", [1, 3, 5, 7, 9])
-    session['reset_flag'] = False  # Reset the flag
-    calculate_clusters()
+# if session['reset_flag']:
+#     # If reset flag is set, allow user to select a new number of clusters
+#     session['reset_flag'] = False  # Reset the flag
+#     calculate_clusters()
+#     session['centroids'] = centroids
+#     session['labels'] = labels
     
     
         
