@@ -181,12 +181,12 @@ if button_clicked:
 
 if reset_flag:
     # Set the reset flag in the session state
-    session_state['reset_flag'] = True
+    session['reset_flag'] = True
     
-if session_state['reset_flag']:
+if session['reset_flag']:
     # If reset flag is set, allow user to select a new number of clusters
     k = st.selectbox("Select number of clusters", [1, 3, 5, 7, 9])
-    session_state['reset_flag'] = False  # Reset the flag
+    session['reset_flag'] = False  # Reset the flag
     calculate_clusters()
     
     
